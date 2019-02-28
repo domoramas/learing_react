@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import TodoList from './TodoList'
+import TodoItems from './TodoItems'
 
 class App extends Component {
   constructor(){
@@ -17,8 +18,25 @@ class App extends Component {
       currentItem,
     })
   }
-  addItem = () =>{
-    console.log("hello Add Item")
+  addItem = e  =>{
+    e.preventDefault()
+    const newItem = this.state.currentItem
+    if (newItem.text !== '') {
+      console.log(newItem)
+      const items = [...this.state.items, newItem]
+      this.setState({
+        items: items,
+        currentItem: {text: '', key: ''},
+      })    
+    }
+  }
+  deleteItem = key =>{
+    const filteredItems = this.state.items.filter(item => {
+      return item.key !== key
+    })
+    this.setState({
+      items: filteredItems,
+    })
   }
   render() {
     return (
@@ -29,6 +47,7 @@ class App extends Component {
           handleInput={this.handleInput}
           currentItem={this.state.currentItem}
         />
+      <TodoItems entries= {this.state.items} deleteItem={this.deleteItem}/>
       </div>
     );
   }
