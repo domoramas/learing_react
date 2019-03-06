@@ -22,7 +22,7 @@ class Form extends Component {
       <form onSubmit={this.handleSubmit}>
         <label> Enter your zip code:
         <input 
-          type="text"
+          type="number"
           name= "zip"
           value={this.state.value}
           onChange={this.handleChange} />
