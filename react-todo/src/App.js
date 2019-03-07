@@ -4,13 +4,10 @@ import TodoList from './TodoList'
 import TodoItems from './TodoItems'
 
 class App extends Component {
-  constructor(){
-    super()
-    this.state = {
+  state = {
       items: [],
       currentItem: {text: '', key: ''},
     }
-  }
   handleInput = e => {
     const itemText = e.target.value
     const currentItem = { text: itemText, key: Date.now() }
@@ -22,7 +19,6 @@ class App extends Component {
     e.preventDefault()
     const newItem = this.state.currentItem
     if (newItem.text !== '') {
-      console.log(newItem)
       const items = [...this.state.items, newItem]
       this.setState({
         items: items,
