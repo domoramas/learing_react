@@ -5,7 +5,7 @@ const Quantity = ({index, quantity, changeQuantity}) => {
     return (
       <div className="counter">
         <button className="counter-action decrement" onClick={()=>changeQuantity(index, -1)} > - </button>
-        <span className="counter-score">{ quantity }</span>
+        <span className="counter-quantity">{ quantity }</span>
         <button className="counter-action increment" onClick={()=>changeQuantity(index, +1)}> + </button>
       </div>
     );
