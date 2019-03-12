@@ -11,7 +11,7 @@ class App extends Component {
         <Form />
         <Results />
       </div>
-      
+    
     );
   }
 }
