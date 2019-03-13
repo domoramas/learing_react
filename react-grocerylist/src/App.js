@@ -7,9 +7,15 @@ import './App.css';
 
 class App extends Component {
   state = {
-    items: []
+    items: [],
   }
   prevItemId = 0
+
+  handleCompleteItem = (id) =>{
+    this.setState ( prevState =>({
+      isCompleted: !prevState.isCompleted
+    }));
+  }
 
   handleRemoveItem = (id) => {
     this.setState( prevState => {
@@ -27,6 +33,7 @@ class App extends Component {
             name,
             quantity: 0,
             id: this.prevItemId+=1,
+            isCompleted : false,
           }
         ]
       };
@@ -36,6 +43,7 @@ class App extends Component {
     this.setState( prevState => ({
       quantity: prevState.items[index].quantity += delta
     }));
+  
   }
   render() {
     return (
@@ -49,7 +57,8 @@ class App extends Component {
             key={item.id.toString()} 
             index={index}
             changeQuantity={this.handleQuantityChange}   
-            removeItem= {this.handleRemoveItem}            
+            removeItem= {this.handleRemoveItem}
+            completeItem = {this.handleCompleteItem}            
           />
         )}
         <AddItemForm addItem = {this.handleAddItem}/>

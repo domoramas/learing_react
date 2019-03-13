@@ -10,6 +10,7 @@ class Items extends PureComponent {
     quantity: PropTypes.number.isRequired,
     id: PropTypes.number,
     index: PropTypes.number,
+    isCompleted: PropTypes.bool,
   }
   render(){
     const {
@@ -19,10 +20,12 @@ class Items extends PureComponent {
       index,
       changeQuantity,
       removeItem,
+      completeItem,
     } = this.props
     return(
       <div className="item">
         <span className="item-name">
+        <button className="complete-item" onClick={() => completeItem(id)}>✔</button>
         <button className="remove-item" onClick={() => removeItem(id)}>✖</button>
         { name }
         </span>
