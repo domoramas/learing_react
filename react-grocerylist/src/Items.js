@@ -18,16 +18,17 @@ class Items extends PureComponent {
       id,
       quantity,
       index,
+      isCompleted,
       changeQuantity,
       removeItem,
       completeItem,
     } = this.props
     return(
       <div className="item">
-        <span className="item-name">
-        <button className="complete-item" onClick={() => completeItem(id)}>✔</button>
+        <span className="item-name" >
+        <button className="complete-item" onClick={() => completeItem(index, isCompleted)}>✔</button>
         <button className="remove-item" onClick={() => removeItem(id)}>✖</button>
-        { name }
+        { !isCompleted ? name :  "completed" }
         </span>
         <Quantity 
         quantity = { quantity }

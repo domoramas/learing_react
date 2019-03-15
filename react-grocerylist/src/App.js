@@ -11,12 +11,6 @@ class App extends Component {
   }
   prevItemId = 0
 
-  handleCompleteItem = (id) =>{
-    this.setState ( prevState =>({
-      isCompleted: !prevState.isCompleted
-    }));
-  }
-
   handleRemoveItem = (id) => {
     this.setState( prevState => {
       return {
@@ -31,7 +25,7 @@ class App extends Component {
           ...prevState.items,
           {
             name,
-            quantity: 0,
+            quantity: 1,
             id: this.prevItemId+=1,
             isCompleted : false,
           }
@@ -39,6 +33,12 @@ class App extends Component {
       };
     })
   }
+  handleCompleteItem = (index, isCompleted) =>{
+    this.setState( prevState => ({
+      isCompleted : prevState.items[index].isCompleted = !isCompleted
+    }));
+  }
+
   handleQuantityChange = (index, delta) => {
     this.setState( prevState => ({
       quantity: prevState.items[index].quantity += delta
@@ -49,6 +49,8 @@ class App extends Component {
     return (
       <div className="App">
        <Header />
+       <AddItemForm addItem = {this.handleAddItem}/>
+
        {this.state.items.map( (item, index) =>
           <Items
             name={item.name}
@@ -56,12 +58,13 @@ class App extends Component {
             id={item.id}
             key={item.id.toString()} 
             index={index}
+            isCompleted = {item.isCompleted}
             changeQuantity={this.handleQuantityChange}   
             removeItem= {this.handleRemoveItem}
             completeItem = {this.handleCompleteItem}            
           />
         )}
-        <AddItemForm addItem = {this.handleAddItem}/>
+        
       </div>
     );
   }
