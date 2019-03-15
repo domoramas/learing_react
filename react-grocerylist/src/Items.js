@@ -28,7 +28,7 @@ class Items extends PureComponent {
         <span className="item-name" >
         <button className="complete-item" onClick={() => completeItem(index, isCompleted)}>✔</button>
         <button className="remove-item" onClick={() => removeItem(id)}>✖</button>
-        { !isCompleted ? name :  "completed" }
+          { !isCompleted ? <span>{name}</span>  :  <span style={{ textDecorationLine: 'line-through' }}>{name}</span> }
         </span>
         <Quantity 
         quantity = { quantity }
