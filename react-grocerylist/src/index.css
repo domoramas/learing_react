@@ -180,6 +180,9 @@ svg {
   .decrement:hover {
     background: #EF5350;
   }
+  .decrement:disabled:hover {
+    background-color: #DCDCDC;
+  }
 
   .counter-quantity {
     flex-grow: 1;
